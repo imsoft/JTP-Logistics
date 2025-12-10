@@ -1,0 +1,99 @@
+'use client';
+
+import { Users, Laptop, Smartphone, Mail, Building2 } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarGroup,
+  SidebarGroupContent,
+  SidebarGroupLabel,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarHeader,
+} from '@/components/ui/sidebar';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
+const menuItems = [
+  {
+    title: 'Empleados',
+    url: '/',
+    icon: Users,
+  },
+  {
+    title: 'Laptops',
+    url: '/laptops',
+    icon: Laptop,
+  },
+  {
+    title: 'Celulares',
+    url: '/cellphones',
+    icon: Smartphone,
+  },
+  {
+    title: 'Correos',
+    url: '/emails',
+    icon: Mail,
+  },
+];
+
+export function AppSidebar() {
+  const pathname = usePathname();
+
+  return (
+    <Sidebar collapsible="icon">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton size="lg" asChild>
+              <Link href="/">
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                  <Building2 className="size-4" />
+                </div>
+                <div className="grid flex-1 text-left text-sm leading-tight">
+                  <span className="truncate font-semibold">JTP Logistics</span>
+                  <span className="truncate text-xs">Sistema de Gestión</span>
+                </div>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarGroup>
+          <SidebarGroupLabel>Recursos</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <TooltipProvider>
+                {menuItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <SidebarMenuButton asChild isActive={pathname === item.url}>
+                          <Link href={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </Link>
+                        </SidebarMenuButton>
+                      </TooltipTrigger>
+                      <TooltipContent side="right">
+                        <p>{item.title}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </SidebarMenuItem>
+                ))}
+              </TooltipProvider>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
+    </Sidebar>
+  );
+}

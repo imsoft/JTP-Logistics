@@ -2,12 +2,12 @@
 
 import { useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { EmployeesTable, EmployeesTableRef } from '@/components/EmployeesTable';
+import { CellphonesTable, CellphonesTableRef } from '@/components/CellphonesTable';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 
-export default function Home() {
-  const tableRef = useRef<EmployeesTableRef>(null);
+export default function CellphonesPage() {
+  const tableRef = useRef<CellphonesTableRef>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
@@ -15,27 +15,27 @@ export default function Home() {
         <div className="mb-8 flex items-start justify-between">
           <div>
             <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">
-              Empleados
+              Celulares
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              Gestión de empleados e información de contacto
+              Inventario de celulares y smartphones
             </p>
           </div>
           <Button onClick={() => tableRef.current?.openAddForm()}>
             <Plus className="mr-2 h-4 w-4" />
-            Agregar Empleado
+            Agregar Celular
           </Button>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Equipo JTP</CardTitle>
+            <CardTitle>Dispositivos Móviles</CardTitle>
             <CardDescription>
-              Ver y gestionar información de empleados
+              Ver y gestionar inventario de celulares
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <EmployeesTable ref={tableRef} />
+            <CellphonesTable ref={tableRef} />
           </CardContent>
         </Card>
       </div>

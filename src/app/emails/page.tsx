@@ -2,12 +2,12 @@
 
 import { useRef } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { EmployeesTable, EmployeesTableRef } from '@/components/EmployeesTable';
+import { EmailsTable, EmailsTableRef } from '@/components/EmailsTable';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 
-export default function Home() {
-  const tableRef = useRef<EmployeesTableRef>(null);
+export default function EmailsPage() {
+  const tableRef = useRef<EmailsTableRef>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
@@ -15,27 +15,27 @@ export default function Home() {
         <div className="mb-8 flex items-start justify-between">
           <div>
             <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">
-              Empleados
+              Cuentas de Correo
             </h1>
             <p className="text-lg text-slate-600 dark:text-slate-400">
-              Gestión de empleados e información de contacto
+              Gestión de cuentas de correo corporativas y personales
             </p>
           </div>
           <Button onClick={() => tableRef.current?.openAddForm()}>
             <Plus className="mr-2 h-4 w-4" />
-            Agregar Empleado
+            Agregar Correo
           </Button>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Equipo JTP</CardTitle>
+            <CardTitle>Gestión de Correos</CardTitle>
             <CardDescription>
-              Ver y gestionar información de empleados
+              Ver y gestionar cuentas de correo
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <EmployeesTable ref={tableRef} />
+            <EmailsTable ref={tableRef} />
           </CardContent>
         </Card>
       </div>
