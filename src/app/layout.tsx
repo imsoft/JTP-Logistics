@@ -4,6 +4,8 @@ import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SupabaseProvider } from "@/components/providers/SupabaseProvider";
+import { AuthProvider } from "@/components/providers/AuthProvider";
+import { Analytics } from "@vercel/analytics/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,16 +32,19 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SupabaseProvider>
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="flex-1 w-full">
-              <SidebarTrigger className="m-4" />
-              {children}
-            </main>
-          </SidebarProvider>
-        </SupabaseProvider>
+        <AuthProvider>
+          <SupabaseProvider>
+            <SidebarProvider>
+              <AppSidebar />
+              <main className="flex-1 w-full">
+                <SidebarTrigger className="m-4" />
+                {children}
+              </main>
+            </SidebarProvider>
+          </SupabaseProvider>
+        </AuthProvider>
       </body>
+      <Analytics />
     </html>
   );
 }
