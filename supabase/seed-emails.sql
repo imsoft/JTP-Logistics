@@ -39,7 +39,8 @@ INSERT INTO emails (type, email, password, assigned_to) VALUES
 ('administrative', 'bancos@jtp.com.mx', 'bancos.jtp.2487', '{}'),
 ('administrative', 'importaciones@jtp.com.mx', 'importaciones.jtp.2487', '{}'),
 ('administrative', 'calidad@jtp.com.mx', 'calidad.jtp.2487', '{}'),
-('administrative', 'gerencia.operativa@jtp.com.mx', 'gerencia.operativa.2487', '{}');
+('administrative', 'gerencia.operativa@jtp.com.mx', 'gerencia.operativa.2487', '{}')
+ON CONFLICT (email) DO NOTHING;
 
 -- GMAIL (12)
 INSERT INTO emails (type, email, password, assigned_to) VALUES
@@ -54,12 +55,14 @@ INSERT INTO emails (type, email, password, assigned_to) VALUES
 ('gmail', 'jtp.auxtrafico@gmail.com', 'Susanajfr151210', '{}'),
 ('gmail', 'jtp.traficovespertino@gmail.com', 'Tardejfr151210', '{}'),
 ('gmail', 'jtp.trafico3@gmail.com', 'Trafico3jfr151210', '{}'),
-('gmail', 'jtp.trafico.internacional@gmail.com', 'TraficoInternacionaljfr151210', '{}');
+('gmail', 'jtp.trafico.internacional@gmail.com', 'TraficoInternacionaljfr151210', '{}')
+ON CONFLICT (email) DO NOTHING;
 
 -- HOTMAIL (2)
 INSERT INTO emails (type, email, password, assigned_to) VALUES
 ('hotmail', 'jtp_direccion@hotmail.com', 'Bucerias2025', '{}'),
-('hotmail', 'jtp.correos@hotmail.com', 'Bucerias2025', '{}');
+('hotmail', 'jtp.correos@hotmail.com', 'Bucerias2025', '{}')
+ON CONFLICT (email) DO NOTHING;
 
 -- ICLOUD (17)
 INSERT INTO emails (type, email, password, assigned_to) VALUES
@@ -78,11 +81,13 @@ INSERT INTO emails (type, email, password, assigned_to) VALUES
 ('icloud', 'jtp.jefafinanzas@gmail.com', '', '{}'),
 ('icloud', 'gerencia@jtp.com.mx', '', '{}'),
 ('icloud', 'jtp.trafico.internacional@gmail.com', 'Jtp.Traf.Int151210', '{}'),
-('icloud', 'jtp.traficovespertino@gmail.com', '', '{}');
+('icloud', 'jtp.traficovespertino@gmail.com', '', '{}')
+ON CONFLICT (email) DO NOTHING;
 
 -- HOSTING (1)
 INSERT INTO emails (type, email, password, assigned_to) VALUES
-('hosting', 'arhurweb@gmail.com', 'JTP~2021pr0', '{}');
+('hosting', 'arhurweb@gmail.com', 'JTP~2021pr0', '{}')
+ON CONFLICT (email) DO NOTHING;
 
 -- ============================================================
 -- VERIFICACIÓN

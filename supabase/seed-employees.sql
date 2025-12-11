@@ -125,7 +125,11 @@ INSERT INTO employees (
   'ASUS Vivobook Go 14 (Finanzas)',
   '151210',
   'S3N0CV07633411A'
-);
+)
+ON CONFLICT (cellphone) DO NOTHING;
+
+-- Nota: Se usa cellphone como criterio de unicidad porque es único por empleado
+-- Si el empleado ya existe (mismo número de celular), no se insertará de nuevo
 
 -- ============================================================
 -- VERIFICACIÓN
