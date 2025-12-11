@@ -79,6 +79,54 @@ Si obtienes errores:
 2. **Error de permisos**: Asegúrate de que las políticas RLS permitan inserciones
 3. **Error de duplicados**: Si ya ejecutaste el script, los empleados pueden estar duplicados. Limpia la tabla `employees` primero.
 
+## Importación de Correos Electrónicos
+
+Este script importa todos los correos electrónicos (administrative, gmail, hotmail, icloud, hosting) directamente a Supabase.
+
+### Uso
+
+```bash
+pnpm run import:emails
+```
+
+### Qué hace el script
+
+1. **Importa correos electrónicos** organizados por tipo:
+   - **Administrative** (35 correos): Correos corporativos @jtp.com.mx
+   - **Gmail** (12 correos): Cuentas de Gmail de trabajo
+   - **Hotmail** (2 correos): Cuentas de Hotmail
+   - **iCloud** (17 correos): Cuentas de iCloud y Outlook
+   - **Hosting** (1 correo): Cuenta de hosting/web
+
+2. **Valida duplicados**: Verifica si un correo ya existe antes de insertarlo
+
+3. **Muestra estadísticas** por tipo al finalizar
+
+### Datos incluidos
+
+**Total: 67 correos electrónicos** organizados por tipo:
+
+- 📋 **Administrative**: admin@jtp.com.mx, competitividad@jtp.com.mx, facturacion@jtp.com.mx, etc.
+- 📬 **Gmail**: jtp.jefalogistica@gmail.com, jtp.jefafinanzas@gmail.com, etc.
+- 📧 **Hotmail**: jtp_direccion@hotmail.com, jtp.correos@hotmail.com
+- ☁️ **iCloud**: jtp_gerencia@icloud.com, trafico.gdl@icloud.com, etc.
+- 🌐 **Hosting**: arhurweb@gmail.com
+
+### Notas importantes
+
+- Los correos se insertan SIN ASIGNAR a empleados (`assigned_to: []`)
+- Para asignar correos a empleados, usa la interfaz de la aplicación o un script adicional
+- El script valida que no haya duplicados usando el campo `email` (único)
+- Algunos correos de iCloud no tienen contraseña en los datos originales (se insertan con string vacío)
+
+### Troubleshooting
+
+Si obtienes errores:
+
+1. **Error de duplicado de email**: El correo ya existe en la base de datos (se salta automáticamente)
+2. **Error de tipo inválido**: Verifica que el tipo sea uno de: 'administrative', 'gmail', 'hotmail', 'icloud', 'hosting'
+3. **Error de conexión**: Verifica tus variables de entorno
+
 ## Script de limpieza (opcional)
 
 Si necesitas limpiar la base de datos antes de volver a importar:
