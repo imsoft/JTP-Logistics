@@ -20,6 +20,29 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "JTP Logistics - Management System",
   description: "Employee, equipment and email management system for JTP Logistics",
+  manifest: "/manifest.json",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+    },
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "JTP Logistics",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
@@ -29,6 +52,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+        <link rel="apple-touch-icon" href="/logo/pwa-icons/android/android-launchericon-192-192.png" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

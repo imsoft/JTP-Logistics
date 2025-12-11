@@ -1,7 +1,8 @@
 'use client';
 
-import { Users, Laptop, Smartphone, Mail, Building2 } from 'lucide-react';
+import { Users, Laptop, Smartphone, Mail } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import {
   Sidebar,
@@ -54,8 +55,14 @@ export function AppSidebar() {
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
               <Link href="/">
-                <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-                  <Building2 className="size-4" />
+                <div className="flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <Image
+                    src="/logo/logo-jtp-logistics.png"
+                    alt="JTP Logistics Logo"
+                    width={32}
+                    height={32}
+                    className="object-contain"
+                  />
                 </div>
                 <div className="grid flex-1 text-left text-sm leading-tight">
                   <span className="truncate font-semibold">JTP Logistics</span>
