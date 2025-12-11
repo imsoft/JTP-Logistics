@@ -1,6 +1,14 @@
 # Scripts de Importación
 
-## Importación de Empleados
+Hay dos formas de importar datos a Supabase:
+1. **Scripts TypeScript** (usando `tsx`) - Recomendado para desarrollo local
+2. **Scripts SQL** (usando SQL Editor de Supabase) - Recomendado para importación rápida en producción
+
+---
+
+## Opción 1: Scripts TypeScript
+
+### Importación de Empleados
 
 Este script importa todos los empleados desde los datos del Google Sheets directamente a Supabase.
 
@@ -126,6 +134,62 @@ Si obtienes errores:
 1. **Error de duplicado de email**: El correo ya existe en la base de datos (se salta automáticamente)
 2. **Error de tipo inválido**: Verifica que el tipo sea uno de: 'administrative', 'gmail', 'hotmail', 'icloud', 'hosting'
 3. **Error de conexión**: Verifica tus variables de entorno
+
+---
+
+## Opción 2: Scripts SQL (Recomendado para importación rápida)
+
+### Archivos SQL disponibles
+
+1. **`supabase/seed-employees.sql`** - Importa los 7 empleados
+2. **`supabase/seed-emails.sql`** - Importa los 67 correos electrónicos
+
+### Cómo usar los scripts SQL
+
+1. Abre el **SQL Editor** en tu dashboard de Supabase
+2. Copia y pega el contenido del archivo SQL que desees ejecutar
+3. Haz clic en **Run** o presiona `Ctrl/Cmd + Enter`
+4. Verifica la importación ejecutando las queries de verificación incluidas al final de cada archivo
+
+### Ventajas de usar SQL directo
+
+- ✅ **Más rápido** - Se ejecuta directamente en la base de datos
+- ✅ **Sin dependencias** - No necesitas variables de entorno configuradas
+- ✅ **Más confiable** - Menos puntos de fallo
+- ✅ **Transaccional** - Se ejecuta todo o nada
+- ✅ **Ideal para producción** - Perfectos para deployments
+
+### Ejemplo de uso
+
+```sql
+-- 1. Abre SQL Editor en Supabase
+-- 2. Copia el contenido de supabase/seed-employees.sql
+-- 3. Ejecuta el script
+-- 4. Verifica con:
+SELECT department, COUNT(*) as total FROM employees GROUP BY department;
+
+-- Resultado esperado:
+-- logistics | 5
+-- finance   | 2
+```
+
+### Importación de Correos con SQL
+
+```sql
+-- 1. Copia el contenido de supabase/seed-emails.sql
+-- 2. Ejecuta el script
+-- 3. Verifica con:
+SELECT type, COUNT(*) as total FROM emails GROUP BY type ORDER BY type;
+
+-- Resultado esperado:
+-- administrative | 35
+-- gmail          | 12
+-- hotmail        | 2
+-- icloud         | 17
+-- hosting        | 1
+```
+
+---
 
 ## Script de limpieza (opcional)
 
