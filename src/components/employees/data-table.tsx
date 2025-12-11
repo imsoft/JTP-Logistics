@@ -85,23 +85,23 @@ export function DataTable<TData, TValue>({
 
   return (
     <div className="w-full">
-      <div className="flex flex-col gap-4 py-4 sm:flex-row sm:items-center">
-        <Input
-          placeholder="Buscar por nombre..."
-          value={(table.getColumn("fullName")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("fullName")?.setFilterValue(event.target.value)
-          }
-          className="w-full sm:max-w-sm"
-        />
-        <div className="flex gap-2 sm:gap-4 sm:ml-auto">
+      <div className="flex flex-col gap-4 py-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <Input
+            placeholder="Buscar por nombre..."
+            value={(table.getColumn("fullName")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("fullName")?.setFilterValue(event.target.value)
+            }
+            className="w-full sm:max-w-sm"
+          />
           <Select
             value={(table.getColumn("department")?.getFilterValue() as string) ?? "all"}
             onValueChange={(value) =>
               table.getColumn("department")?.setFilterValue(value === "all" ? "" : value)
             }
           >
-            <SelectTrigger className="w-full sm:w-[180px]">
+            <SelectTrigger className="w-full sm:w-[180px] sm:ml-auto">
               <SelectValue placeholder="Departamento" />
             </SelectTrigger>
             <SelectContent>
@@ -110,32 +110,32 @@ export function DataTable<TData, TValue>({
               <SelectItem value="finance">Finanzas</SelectItem>
             </SelectContent>
           </Select>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full sm:w-auto">
-                Columnas <ChevronDown className="ml-2 h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => {
-                  return (
-                    <DropdownMenuCheckboxItem
-                      key={column.id}
-                      checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        column.toggleVisibility(!!value)
-                      }
-                    >
-                      {columnLabels[column.id] || column.id}
-                    </DropdownMenuCheckboxItem>
-                  );
-                })}
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="w-full sm:w-auto">
+              Columnas <ChevronDown className="ml-2 h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value) =>
+                      column.toggleVisibility(!!value)
+                    }
+                  >
+                    {columnLabels[column.id] || column.id}
+                  </DropdownMenuCheckboxItem>
+                );
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
       <div className="rounded-md border overflow-x-auto">
         <Table>
