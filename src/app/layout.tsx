@@ -5,7 +5,8 @@ import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
 import { SupabaseProvider } from "@/components/providers/SupabaseProvider";
 import { AuthProvider } from "@/components/providers/AuthProvider";
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/next";
+import { PWARegister } from "@/components/pwa/PWARegister";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +60,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <PWARegister />
         <AuthProvider>
           <SupabaseProvider>
             <SidebarProvider>
