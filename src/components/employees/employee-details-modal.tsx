@@ -208,7 +208,10 @@ export function EmployeeDetailsModal({
                   <div>
                     <p className="font-medium">{cellphone.name}</p>
                     <p className="text-sm text-muted-foreground">
-                      Tel: {formatPhoneNumber(cellphone.phone)} • IMEI: {formatIMEI(cellphone.imei)}
+                      Tel: {formatPhoneNumber(cellphone.phone)}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      IMEI: {formatIMEI(cellphone.imei)}
                     </p>
                   </div>
                   <PasswordCell password={cellphone.password} />
