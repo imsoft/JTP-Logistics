@@ -113,7 +113,7 @@ export function DataTable<TData, TValue>({
           </Select>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" className="w-full sm:w-auto justify-between">
+              <Button variant="outline" className="w-full sm:w-[180px] justify-between">
                 Columnas <ChevronDown className="ml-2 h-4 w-4" />
               </Button>
             </DropdownMenuTrigger>
