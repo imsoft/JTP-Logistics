@@ -114,7 +114,19 @@ export function EmployeeDetailsModal({
 
   const assignedLaptops = laptops.filter(l => l.assignedTo === employee.id);
   const assignedCellphones = cellphones.filter(c => c.assignedTo === employee.id);
-  const assignedEmails = emails.filter(e => e.assignedTo.includes(employee.id));
+
+  // Orden de prioridad para tipos de correo
+  const emailTypeOrder: Record<Email['type'], number> = {
+    administrative: 1,
+    gmail: 2,
+    hotmail: 3,
+    icloud: 4,
+    hosting: 5,
+  };
+
+  const assignedEmails = emails
+    .filter(e => e.assignedTo.includes(employee.id))
+    .sort((a, b) => emailTypeOrder[a.type] - emailTypeOrder[b.type]);
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
