@@ -121,7 +121,6 @@ export function EmailForm({ email, open, onOpenChange, onSubmit }: EmailFormProp
                 type="email"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="usuario@ejemplo.com"
                 required
               />
             </div>

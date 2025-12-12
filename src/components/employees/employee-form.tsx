@@ -82,7 +82,6 @@ export function EmployeeForm({ employee, open, onOpenChange, onSubmit }: Employe
                 id="fullName"
                 value={formData.fullName}
                 onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                placeholder="Juan Pérez"
                 required
               />
             </div>
@@ -93,7 +92,6 @@ export function EmployeeForm({ employee, open, onOpenChange, onSubmit }: Employe
                 id="position"
                 value={formData.position}
                 onChange={(e) => setFormData({ ...formData, position: e.target.value })}
-                placeholder="Gerente de Operaciones"
                 required
               />
             </div>

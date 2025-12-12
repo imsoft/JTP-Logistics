@@ -92,7 +92,6 @@ export function CellphoneForm({ cellphone, open, onOpenChange, onSubmit }: Cellp
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="iPhone 15 Pro"
                 required
               />
             </div>
@@ -103,7 +102,6 @@ export function CellphoneForm({ cellphone, open, onOpenChange, onSubmit }: Cellp
                 id="phone"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                placeholder="+52 987 654 3210"
                 required
               />
             </div>
@@ -141,7 +139,6 @@ export function CellphoneForm({ cellphone, open, onOpenChange, onSubmit }: Cellp
                 id="imei"
                 value={formData.imei}
                 onChange={(e) => setFormData({ ...formData, imei: e.target.value })}
-                placeholder="123456789012345"
                 required
               />
             </div>
@@ -155,7 +152,7 @@ export function CellphoneForm({ cellphone, open, onOpenChange, onSubmit }: Cellp
                 }
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Seleccionar empleado" />
+                  <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="w-full">
                   <SelectItem value="unassigned">Sin asignar</SelectItem>

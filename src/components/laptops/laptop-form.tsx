@@ -89,7 +89,6 @@ export function LaptopForm({ laptop, open, onOpenChange, onSubmit }: LaptopFormP
                 id="name"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                placeholder="MacBook Pro 16"
                 required
               />
             </div>
@@ -140,7 +139,7 @@ export function LaptopForm({ laptop, open, onOpenChange, onSubmit }: LaptopFormP
                 }
               >
                 <SelectTrigger className="w-full">
-                  <SelectValue placeholder="Seleccionar empleado" />
+                  <SelectValue />
                 </SelectTrigger>
                 <SelectContent className="w-full">
                   <SelectItem value="unassigned">Sin asignar</SelectItem>
