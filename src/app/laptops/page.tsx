@@ -12,19 +12,21 @@ export default function LaptopsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto py-8 px-4">
-        <div className="mb-8 flex items-start justify-between">
-          <div>
-            <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">
-              Laptops
-            </h1>
-            <p className="text-lg text-slate-600 dark:text-slate-400">
-              Inventario de laptops y equipos portátiles
-            </p>
+        <div className="mb-8">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h1 className="text-4xl font-bold text-slate-900 dark:text-slate-50 mb-2">
+                Laptops
+              </h1>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                Inventario de laptops y equipos portátiles
+              </p>
+            </div>
+            <Button onClick={() => tableRef.current?.openAddForm()} className="sm:mt-0">
+              <Plus className="mr-2 h-4 w-4" />
+              Agregar Laptop
+            </Button>
           </div>
-          <Button onClick={() => tableRef.current?.openAddForm()}>
-            <Plus className="mr-2 h-4 w-4" />
-            Agregar Laptop
-          </Button>
         </div>
 
         <Card>
