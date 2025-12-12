@@ -12,14 +12,20 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-const getDepartmentLabel = (department: 'logistics' | 'finance') => {
-  return department === 'logistics' ? 'Logística' : 'Finanzas';
+const getDepartmentLabel = (department: 'logistics' | 'finance' | 'management') => {
+  if (department === 'logistics') return 'Logística';
+  if (department === 'finance') return 'Finanzas';
+  return 'Dirección';
 };
 
-const getDepartmentColor = (department: 'logistics' | 'finance') => {
-  return department === 'logistics'
-    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
-    : 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
+const getDepartmentColor = (department: 'logistics' | 'finance' | 'management') => {
+  if (department === 'logistics') {
+    return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
+  }
+  if (department === 'finance') {
+    return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
+  }
+  return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300';
 };
 
 export const columns: ColumnDef<Employee>[] = [
@@ -67,7 +73,7 @@ export const columns: ColumnDef<Employee>[] = [
       );
     },
     cell: ({ row }) => {
-      const department = row.getValue("department") as 'logistics' | 'finance';
+      const department = row.getValue("department") as 'logistics' | 'finance' | 'management';
       return (
         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getDepartmentColor(department)}`}>
           {getDepartmentLabel(department)}

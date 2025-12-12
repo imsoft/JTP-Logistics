@@ -2,7 +2,7 @@ export interface Employee {
   id: string;
   fullName: string;
   position: string;
-  department: 'logistics' | 'finance';
+  department: 'logistics' | 'finance' | 'management';
 }
 
 export interface Laptop {

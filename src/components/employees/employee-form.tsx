@@ -100,7 +100,7 @@ export function EmployeeForm({ employee, open, onOpenChange, onSubmit }: Employe
               <Label htmlFor="department">Departamento *</Label>
               <Select
                 value={formData.department}
-                onValueChange={(value: 'logistics' | 'finance') =>
+                onValueChange={(value: 'logistics' | 'finance' | 'management') =>
                   setFormData({ ...formData, department: value })
                 }
               >
@@ -110,6 +110,7 @@ export function EmployeeForm({ employee, open, onOpenChange, onSubmit }: Employe
                 <SelectContent className="w-full">
                   <SelectItem value="logistics">Logística</SelectItem>
                   <SelectItem value="finance">Finanzas</SelectItem>
+                  <SelectItem value="management">Dirección</SelectItem>
                 </SelectContent>
               </Select>
             </div>

@@ -87,8 +87,10 @@ interface EmployeeDetailsModalProps {
   onOpenChange: (open: boolean) => void;
 }
 
-const getDepartmentLabel = (department: 'logistics' | 'finance') => {
-  return department === 'logistics' ? 'Logística' : 'Finanzas';
+const getDepartmentLabel = (department: 'logistics' | 'finance' | 'management') => {
+  if (department === 'logistics') return 'Logística';
+  if (department === 'finance') return 'Finanzas';
+  return 'Dirección';
 };
 
 const getEmailTypeLabel = (type: Email['type']) => {

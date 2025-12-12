@@ -87,78 +87,80 @@ export function DataTable<TData, TValue>({
   return (
     <div className="w-full">
       <div className="flex flex-col gap-4 py-4">
-        <Input
-          placeholder="Buscar correos..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
-          }
-          className="w-full sm:max-w-sm"
-        />
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-4">
-          <Select
-            value={(table.getColumn("type")?.getFilterValue() as string[])?.join(",") || "all"}
-            onValueChange={(value) => {
-              if (value === "all") {
-                table.getColumn("type")?.setFilterValue(undefined);
-              } else {
-                table.getColumn("type")?.setFilterValue([value]);
-              }
-            }}
-          >
-            <SelectTrigger className="w-full sm:w-[180px]">
-              <SelectValue placeholder="Tipo de Correo" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Todos los Tipos</SelectItem>
-              <SelectItem value="administrative">Administrativo</SelectItem>
-              <SelectItem value="gmail">Gmail</SelectItem>
-              <SelectItem value="hotmail">Hotmail</SelectItem>
-              <SelectItem value="icloud">iCloud</SelectItem>
-              <SelectItem value="hosting">Hosting</SelectItem>
-            </SelectContent>
-          </Select>
-          <Select
-            value={(table.getColumn("assignedTo")?.getFilterValue() as string) ?? "all"}
-            onValueChange={(value) =>
-              table.getColumn("assignedTo")?.setFilterValue(value)
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+          <Input
+            placeholder="Buscar correos..."
+            value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+            onChange={(event) =>
+              table.getColumn("email")?.setFilterValue(event.target.value)
             }
-          >
-            <SelectTrigger className="w-full sm:w-[180px] sm:ml-auto">
-              <SelectValue placeholder="Asignación" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">Todos los Correos</SelectItem>
-              <SelectItem value="assigned">Asignados</SelectItem>
-              <SelectItem value="unassigned">Sin asignar</SelectItem>
-            </SelectContent>
-          </Select>
+            className="w-full sm:max-w-sm"
+          />
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:ml-auto">
+            <Select
+              value={(table.getColumn("type")?.getFilterValue() as string[])?.join(",") || "all"}
+              onValueChange={(value) => {
+                if (value === "all") {
+                  table.getColumn("type")?.setFilterValue(undefined);
+                } else {
+                  table.getColumn("type")?.setFilterValue([value]);
+                }
+              }}
+            >
+              <SelectTrigger className="w-full sm:w-[180px]">
+                <SelectValue placeholder="Tipo de Correo" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Todos los Tipos</SelectItem>
+                <SelectItem value="administrative">Administrativo</SelectItem>
+                <SelectItem value="gmail">Gmail</SelectItem>
+                <SelectItem value="hotmail">Hotmail</SelectItem>
+                <SelectItem value="icloud">iCloud</SelectItem>
+                <SelectItem value="hosting">Hosting</SelectItem>
+              </SelectContent>
+            </Select>
+            <Select
+              value={(table.getColumn("assignedTo")?.getFilterValue() as string) ?? "all"}
+              onValueChange={(value) =>
+                table.getColumn("assignedTo")?.setFilterValue(value)
+              }
+            >
+              <SelectTrigger className="w-full sm:w-[180px]">
+                <SelectValue placeholder="Asignación" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">Todos los Correos</SelectItem>
+                <SelectItem value="assigned">Asignados</SelectItem>
+                <SelectItem value="unassigned">Sin asignar</SelectItem>
+              </SelectContent>
+            </Select>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="w-full sm:w-auto">
+                  Columnas <ChevronDown className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                {table
+                  .getAllColumns()
+                  .filter((column) => column.getCanHide())
+                  .map((column) => {
+                    return (
+                      <DropdownMenuCheckboxItem
+                        key={column.id}
+                        checked={column.getIsVisible()}
+                        onCheckedChange={(value) =>
+                          column.toggleVisibility(!!value)
+                        }
+                      >
+                        {columnLabels[column.id] || column.id}
+                      </DropdownMenuCheckboxItem>
+                    );
+                  })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
         </div>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="w-full sm:w-auto">
-              Columnas <ChevronDown className="ml-2 h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => {
-                return (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
-                      column.toggleVisibility(!!value)
-                    }
-                  >
-                    {columnLabels[column.id] || column.id}
-                  </DropdownMenuCheckboxItem>
-                );
-              })}
-          </DropdownMenuContent>
-        </DropdownMenu>
       </div>
       <div className="rounded-md border overflow-x-auto">
         <Table>

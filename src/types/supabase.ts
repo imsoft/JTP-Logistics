@@ -3,7 +3,7 @@ export interface DbEmployee {
   id: string;
   full_name: string;
   position: string;
-  department: 'logistics' | 'finance';
+  department: 'logistics' | 'finance' | 'management';
   gmail: string;
   icloud: string;
   administrative_emails: string[];
