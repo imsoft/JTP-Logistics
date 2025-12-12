@@ -18,6 +18,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip';
 import { Laptop as LaptopIcon, Smartphone, Mail, User, Briefcase, Building2, Eye, EyeOff, Copy, Check } from 'lucide-react';
+import { formatPhoneNumber, formatIMEI } from '@/lib/utils';
 
 function PasswordCell({ password }: { password: string }) {
   const [show, setShow] = useState(false);
@@ -207,7 +208,7 @@ export function EmployeeDetailsModal({
                   <div>
                     <p className="font-medium">{cellphone.name}</p>
                     <p className="text-sm text-muted-foreground">
-                      Tel: {cellphone.phone} • IMEI: {cellphone.imei}
+                      Tel: {formatPhoneNumber(cellphone.phone)} • IMEI: {formatIMEI(cellphone.imei)}
                     </p>
                   </div>
                   <PasswordCell password={cellphone.password} />
