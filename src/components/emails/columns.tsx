@@ -201,11 +201,13 @@ export const columns: ColumnDef<Email>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(email.email)}
             >
+              <Copy className="mr-2 h-4 w-4" />
               Copiar correo
             </DropdownMenuItem>
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(email.password)}
             >
+              <Copy className="mr-2 h-4 w-4" />
               Copiar contraseña
             </DropdownMenuItem>
             <DropdownMenuSeparator />

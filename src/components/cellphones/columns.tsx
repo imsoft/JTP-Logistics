@@ -168,6 +168,7 @@ export const columns: ColumnDef<Cellphone>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(cellphone.imei)}
             >
+              <Copy className="mr-2 h-4 w-4" />
               Copiar IMEI
             </DropdownMenuItem>
             <DropdownMenuSeparator />

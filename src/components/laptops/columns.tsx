@@ -162,6 +162,7 @@ export const columns: ColumnDef<Laptop>[] = [
             <DropdownMenuItem
               onClick={() => navigator.clipboard.writeText(laptop.serialNumber)}
             >
+              <Copy className="mr-2 h-4 w-4" />
               Copiar número de serie
             </DropdownMenuItem>
             <DropdownMenuSeparator />
