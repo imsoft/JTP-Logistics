@@ -5,6 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Trash2, User, Pencil, Eye, EyeOff, Copy, Check } from "lucide-react";
 import { Cellphone } from "@/types";
 import { Button } from "@/components/ui/button";
+import { formatPhoneNumber } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -98,7 +99,7 @@ export const columns: ColumnDef<Cellphone>[] = [
   {
     accessorKey: "phone",
     header: "Número de Teléfono",
-    cell: ({ row }) => <div>{row.getValue("phone")}</div>,
+    cell: ({ row }) => <div>{formatPhoneNumber(row.getValue("phone"))}</div>,
   },
   {
     accessorKey: "password",
