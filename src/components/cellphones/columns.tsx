@@ -5,7 +5,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown, MoreHorizontal, Trash2, User, Pencil, Eye, EyeOff, Copy, Check } from "lucide-react";
 import { Cellphone } from "@/types";
 import { Button } from "@/components/ui/button";
-import { formatPhoneNumber } from "@/lib/utils";
+import { formatPhoneNumber, formatIMEI } from "@/lib/utils";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -119,7 +119,7 @@ export const columns: ColumnDef<Cellphone>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="font-mono text-sm">{row.getValue("imei")}</div>,
+    cell: ({ row }) => <div className="font-mono text-sm">{formatIMEI(row.getValue("imei"))}</div>,
   },
   {
     id: "assignedTo",
