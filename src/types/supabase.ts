@@ -4,16 +4,6 @@ export interface DbEmployee {
   full_name: string;
   position: string;
   department: 'logistics' | 'finance' | 'management';
-  gmail: string;
-  icloud: string;
-  administrative_emails: string[];
-  phone: string;
-  cellphone: string;
-  password: string;
-  imei: string;
-  laptop: string;
-  laptop_password: string;
-  serial_number: string;
   created_at?: string;
   updated_at?: string;
 }
@@ -66,17 +56,6 @@ export function employeeToDbEmployee(employee: Partial<Employee>): Partial<DbEmp
     full_name: employee.fullName,
     position: employee.position,
     department: employee.department,
-    // Set default values for required database fields
-    gmail: '',
-    icloud: '',
-    administrative_emails: [],
-    phone: '',
-    cellphone: '',
-    password: '',
-    imei: '',
-    laptop: '',
-    laptop_password: '',
-    serial_number: '',
   };
 }
 
